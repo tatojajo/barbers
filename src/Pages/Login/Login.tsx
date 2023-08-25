@@ -46,13 +46,13 @@ const Login = () => {
                 setIsSnackbarOpen(true);
                 return;
             }
-            // If user isn't found, function will stop here
+
             const now = new Date();
-            // Add 24 hours (in milliseconds) to the current time
+
             const twentyFourHoursFromNow = new Date(
                 now.getTime() + 24 * 60 * 60 * 1000
             );
-            // Convert the timestamp to a string in ISO format
+
             const timestamp = twentyFourHoursFromNow.toISOString();
             localStorage.setItem('token', timestamp);
             navigate('/');
