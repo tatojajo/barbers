@@ -38,10 +38,11 @@ const Login = () => {
         validationSchema,
         onSubmit: (values: LoginFormData) => {
             const users = JSON.parse(localStorage.getItem('user') || '') || [];
-            const user = users.find(
+            const user: UserItem = users.find(
                 (user: UserItem) =>
                     user.email === values.email && user.password === values.password
             );
+            localStorage.setItem("userName", user.firstName)
             if (!user) {
                 setIsSnackbarOpen(true);
                 return;

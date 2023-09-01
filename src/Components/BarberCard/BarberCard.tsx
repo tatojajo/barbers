@@ -1,7 +1,5 @@
 import { FC } from "react"
 
-import { useAppDispatch } from "../../redux/hooks"
-import { barberDetails } from "../../redux/actions"
 import { LinkedIn, Facebook, Instagram, StarBorderOutlined } from "@mui/icons-material"
 import { Avatar, Box, Typography } from "@mui/material"
 import { BarberCardContainer, BarberFullName, Description, SocMedia, PriceRate } from "./barberCardStyles"
@@ -10,17 +8,14 @@ import { BarberItem } from "../../@types/general"
 
 
 type BarberCardProps = {
-    barber: BarberItem
+    barber: BarberItem;
+
 }
 
 const BarberCard: FC<BarberCardProps> = ({ barber }) => {
-    const dispatch = useAppDispatch()
     const avatarUrl = `https://ui-avatars.com/api/?name=${barber.firstName}+${barber.lastName}`
-    const openBarberDetails = () => {
-        dispatch(barberDetails(barber))
-    }
     return (
-        <BarberCardContainer onClick={openBarberDetails} to={`/barber/${barber.firstName}`}>
+        <BarberCardContainer to={`/profile/${barber.id}`}>
             <Avatar sx={{ width: 80, height: 80, mt: 2, }} src={avatarUrl} />
             <BarberFullName>
                 <Typography variant="h5" color="initial">

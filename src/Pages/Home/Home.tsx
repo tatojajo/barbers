@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { saveBarbersData } from "../../redux/actions";
+import { FC, useEffect, useState } from "react";
 import BarberCard from "../../Components/BarberCard";
 import { styled } from "@mui/material";
+import { BarberItem } from "../../@types/general";
 
 
 const HomePage = styled('div')({
@@ -16,14 +15,13 @@ const HomePage = styled('div')({
 
 
 const Home = () => {
-  const dispatch = useAppDispatch()
-  const  barbers  = useAppSelector(data => data.barbers)
+  const [barbers, setBarbers] = useState<BarberItem[]>([])
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/data.json");
       const json = await response.json();
-      dispatch(saveBarbersData(json))
+      setBarbers(json)
     }
 
     fetchData();
